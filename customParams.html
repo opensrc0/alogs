@@ -1,0 +1,43 @@
+<br><br><br><br><br>
+
+<center>
+	<a href="algo.html">Home</a>
+	<form action="" method="get">
+		<label>Change Input Value :- </label>
+		<input name="string" id="string">
+		<button value="submit">Submit</button>
+	</form>
+
+	<h1>Input Value :- </h1>
+	<span id="input"></span>
+
+	<h1>Output Value :- </h1>
+	<h3><span id="output"></span></h3>
+	
+</center>
+
+<script type="text/javascript">
+	var sum = 0;
+	function ment (x) {
+		if(arguments.length>0){
+			var temp = 0;
+			for(var i = 0; i < arguments.length; i ++){
+				temp = temp + arguments[i];
+	        }
+			sum = sum + temp; 
+			return ment;
+	    } else {
+	    	temp = sum;
+	    	sum = 0;
+			return temp;
+	    }
+	}
+
+	var input = decodeURIComponent(location.search.replace("?string=",''));
+	var output = new Function(input)();
+
+	document.getElementById('string').value = input;
+	document.getElementById('input').innerHTML = input;
+	document.getElementById('output').innerHTML = output;
+
+</script>

@@ -1,0 +1,53 @@
+<br><br><br><br><br>
+
+<center>
+	<a href="algo.html">Home</a>
+	<form action="" method="get">
+		<label>Change Input Value :- </label>
+		<input name="string" id="string">
+		<button value="submit">Submit</button>
+	</form>
+
+	<h1>Input Value :- </h1>
+	<span id="input"></span>
+
+	<h1>Output Value :- </h1>
+	<h3><span id="output"></span></h3>
+	
+</center>
+<script type="text/javascript">
+	var string = location.search.replace("?string=",'');//	'hsdjsdjdhhhhhhhhhsksjkdssdalkasklsdk'; 
+	var continueCheck = 0;
+	function bomber(string, continueCheck, j) {
+		for(var i = 0; i < string.length; i++) {
+			if(string[i] == string[i+1]) {
+				string = string.slice(0, i) + string.slice(i+1);
+				continueCheck = 1;
+				return bomber(string, continueCheck, i);
+			} else {
+				if(continueCheck == 1) {
+					string = string.slice(0, j) + string.slice(j+1);
+					return bomber(string, 0, i);
+				}
+			}
+		}
+		return string;
+	}
+
+	document.getElementById('string').value = string;
+	document.getElementById('input').innerHTML = string;
+	var count = 0;
+	var outputString = '';
+	var temp = bomber(string, continueCheck);
+	var myinterval = setInterval(function(i){
+		if(temp.length > count) {
+			outputString = outputString+temp[count];
+			document.getElementById('output').innerHTML = outputString;
+			count++;
+		} else {
+			// clearInterval(myinterval);
+			document.getElementById('output').style.color = '#'+Math.floor((Math.random() * 1000) + 1);;
+		}
+	},300)
+
+</script>
